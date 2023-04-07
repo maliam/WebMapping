@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <title>GEOG490: Assignment 1</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    
+    <!--    Include the reference to the Mapbox JavaScript here in the <head> of the page    -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+      
+    <!--    Include the reference to the Mapbox CSS here in the <head> of the page    -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+      
+    <style>
+        
+        /* Insert the CSS code here between the <style> tags */
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+        
+        #title { z-index: 9999; 
+             background-color:seagreen; 
+             opacity: 90%;
+             text-align: center
+        }
+
+    </style>
+  </head>
+
+  <body>
+    <!--  Insert the map div here in the <body> of the page  -->
+    <div id='map'></div>
+
+    <!--  Insert the tile div here (part V) -->
+      
+    <div id='title'>
+                <h1 style="color: white">Tourist's Guide to Gig Harbor</h1>
+                <h3 style="font-family: times">Destinations Compiled by Malia Mulligan</h3>
+        </div>
+
+    <script>
+        // Insert the JavaScript within the <script> tags, within the body   
+        // Start with the Mapbox access token here
+        mapboxgl.accessToken = 'pk.eyJ1IjoibW11bGxpZ2FuMTkiLCJhIjoiY2xnNWZrMzU0MDJ5ODNsbGkxNWhuemwydSJ9.-huRV8BSDgC97wRS0_TSKQ';
+   
+        // Then initialize the map here
+        var map = new mapboxgl.Map({
+             container: 'map', // id of a div on your page, where the map will be inserted
+             style: 'mapbox://styles/mapbox/satellite-v9', // stylesheet location
+             center: [-122.62177, 47.31313], // starting position [lng, lat] eg. [-122.6788, 45.5212]
+             zoom: 11 // starting zoom 
+        });
+
+        // Add popup markers here  (part IV)
+        
+        var popup2 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<a href="https://www.cityofgigharbor.net/193/Skansie-Brothers-Park">Skansie Brothers Park</a>');
+        
+        var marker2 = new mapboxgl.Marker({color:'tan'})
+           .setLngLat([-122.58169, 47.33106]) // starting position [lng, lat] 
+           .setPopup(popup2)
+           .addTo(map);
+        
+        var popup3 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<a href="https://penmetparks.org/parks/demolay-sandspit-nature-preserve/">Tacoma DeMolay Sandspit Nature Preserve</a');
+        
+        var marker3 = new mapboxgl.Marker({color:'tan'})
+           .setLngLat([-122.66616, 47.27682]) // starting position [lng, lat] 
+           .setPopup(popup3)
+           .addTo(map);
+        
+        var popup4 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<a href="https://www.parks.wa.gov/530/Kopachuck">Kopachuck State Park</a');
+        
+        var marker4 = new mapboxgl.Marker({color:'tan'})
+           .setLngLat([-122.68838, 47.30934]) // starting position [lng, lat] 
+           .setPopup(popup4)
+           .addTo(map);
+        
+        var popup5 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<a href="https://penmetparks.org/parks/narrows-park/">Tacoma Narrows Park</a');
+        
+        var marker5 = new mapboxgl.Marker({color:'tan'})
+           .setLngLat([-122.56390, 47.26795]) // starting position [lng, lat] 
+           .setPopup(popup5)
+           .addTo(map);
+        
+        var popup6 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<a href="https://penmetparks.org/parks/wollochet-bay-estuary/">Wollochet Bay Estuary Park</a');
+        
+        var marker6 = new mapboxgl.Marker({color:'tan'})
+           .setLngLat([-122.61790, 47.29790]) // starting position [lng, lat] 
+           .setPopup(popup6)
+           .addTo(map);
+        
+        var popup7 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<a href="https://www.cityofgigharbor.net/175/Austin-Park-at-txaalq-Estuary">Austin Park</a');
+        
+        var marker7 = new mapboxgl.Marker({color:'tan'})
+           .setLngLat([-122.59242, 47.33673]) // starting position [lng, lat] 
+           .setPopup(popup7)
+           .addTo(map);
+        
+        var popup9 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<a href="https://tidestavern.com/">Tides Tavern</a');
+        
+        var marker9 = new mapboxgl.Marker({color:'MediumTurquoise'})
+           .setLngLat([-122.57843, 47.32949]) // starting position [lng, lat] 
+           .setPopup(popup9)
+           .addTo(map);
+        
+        var popup10 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<a href="https://www.anthonys.com/restaurant/anthonys-at-gig-harbor/">Anthonys Homeport Gig Harbor</a');
+        
+        
+        var marker10 = new mapboxgl.Marker({color:'MediumTurquoise'})
+           .setLngLat([-122.58983, 47.33919]) // starting position [lng, lat] 
+           .setPopup(popup10)
+           .addTo(map);
+        
+        var popup11 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<a href="https://www.moctezumas.com/room/gig-harbor">Moctezumas</a');
+        
+        var marker11 = new mapboxgl.Marker({color:'MediumTurquoise'})
+           .setLngLat([-122.57967, 47.30182]) // starting position [lng, lat] 
+           .setPopup(popup11)
+           .addTo(map);
+        
+        var popup12 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Thai Hut');
+        
+        var marker12 = new mapboxgl.Marker({color:'MediumTurquoise'})
+           .setLngLat([-122.59408, 47.33688]) // starting position [lng, lat] 
+           .setPopup(popup12)
+           .addTo(map);
+        
+        var popup13 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<a href="https://www.elpueblitorestaurant.com/">El Pueblito</a');
+        
+        var marker13 = new mapboxgl.Marker({color:'MediumTurquoise'})
+           .setLngLat([-122.58271, 47.33111]) // starting position [lng, lat] 
+           .setPopup(popup13)
+           .addTo(map);
+        
+        var popup14 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Kinza');
+        
+        var marker14 = new mapboxgl.Marker({color:'MediumTurquoise'})
+           .setLngLat([-122.58754, 47.32125]) // starting position [lng, lat] 
+           .setPopup(popup14)
+           .addTo(map);
+        
+        var popup = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<a href="https://harborhistorymuseum.org">Harbor History Museum</a>');
+        
+        var marker = new mapboxgl.Marker({color:'LightGreen'})
+           .setLngLat([-122.59336, 47.33750]) // starting position [lng, lat] 
+           .setPopup(popup)
+           .addTo(map);
+        
+        var popup8 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<a href="https://foxislandmuseum.org/">Fox Island Historical Society</a');
+        
+        var marker8 = new mapboxgl.Marker({color:'LightGreen'})
+           .setLngLat([-122.62037, 47.24180]) // starting position [lng, lat] 
+           .setPopup(popup8)
+           .addTo(map);
+        
+        var popup_layer = new mapboxgl.Popup({
+               closeOnClick: true, anchor: 'center', 
+             })
+             .setLngLat([-122.62355, 47.31804])
+        .setHTML('<h2 style="font-family:times">Welcome to The Gig Harbor Guide!</h2> <p>Pan and scroll around this map to learn more about popular beaches, restaurants, and other attractions.</p> <p> Click on icons to find links with information.')
+             .addTo(map);
+        
+        
+        // Add any other variables such as markers here (part III)
+         
+
+        // Add optional advanced "On load" function here
+        
+    </script>
+
+  </body>
+
+</html>
