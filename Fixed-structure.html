@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <title>Fixed Map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+      
+    <!--    1.1.  Include the reference to the Mapbox JavaScript here in the <head> of the page  -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>  
+      
+    <!--    1.2 Include the reference to the Mapbox CSS here in the <head> of the page  -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+      
+    <style>
+        /* 1.4 Insert the CSS code here between the <style> tags */
+        body { margin:50px; padding:0; }
+        #map { position:relative; height:300px; width:50%;}
+        #map2 { position:relative; height:300px; width:50%;}
+        #map3 { position:relative; height:300px; width:50%;}
+        
+        #title { z-index: 9999; 
+             background-color:pink; 
+             opacity: 90%;
+             text-align: center
+        }
+        /* 2.5.2 Insert additional CSS code here between the <style> tags */
+
+    </style>
+  </head>
+
+  <body>
+        <!-- 1.3 Insert the div for the structure of the page here in the <body> of the page -->
+        <div id='title'>
+                <h1 style="color: hotpink">How do I define 'Home'?</h1>
+                <h3 style="color: hotpink">by Malia Mulligan</h3>
+                <p style="font-family: times">In this project I explore the concepts of 'home' and 'hometown' and describe the three different places I call home</p>
+        </div>
+      
+        <h2 style="color: mediumpurple"> Fox Island, Washington </h2>
+        <div id='map'></div>
+        <p>Fox Island, Washington was the place I grew up. I wasn't born in Washington, but my family moved there in 2001 when I wasn't even one. My family lived there for 17 years. </p>
+        <hr>
+      
+        <h2 style="color: seagreen"> Kailua, Hawaii </h2>
+        <div id='map2'></div>
+        <p>I moved to Kailua, Hawaii with my parents when I was 16 years old. While I only lived there for 2 years while I was in highschool, this place has a lot of meaning to my family. My mom grew up on the island of Oahu, as did my maternal grandparents. Furthermore, Oahu was the place that my parents met. Plus, thats the place that my parents and grandma still live, and the place that I go home to for holidays. </p>
+        <hr>
+      
+        <h2 style="color: royalblue"> Eugene, Oregon </h2>
+        <div id='map3'></div>
+        <p>Eugene, Oregon is where I've attended college for the last four years. Eugene is the place that I lived on my own for the first time, the place that I rented my own home for the first time, and the place that I feel like I've really come into my own.</p>
+        <hr>
+      
+        <script>
+    //MAP 1 JAVASCRIPT 
+            /* Insert the JavaScript within the <script> tags, within the body */
+            // 2.1 Start with the Mapbox access token
+            mapboxgl.accessToken = 'pk.eyJ1IjoibW11bGxpZ2FuMTkiLCJhIjoiY2xnNWZrMzU0MDJ5ODNsbGkxNWhuemwydSJ9.-huRV8BSDgC97wRS0_TSKQ'; //  Put your access token between the single quotes.
+
+            // 2.2 Then initialize the first map
+            var map = new mapboxgl.Map({
+                   container: 'map', // id of a div on your page, where the map will be inserted
+                   style: 'mapbox://styles/mapbox/dark-v11', // the style URL 'mapbox://styles/mapbox/streets-v11' 
+                   center: [-122.62387415249411, 47.244731590094034], // starting position [lng, lat] eg. [-122.6788, 45.5212]
+                   zoom: 11 // starting zoom 
+               });
+            
+            // 2.3 Add any other variables (such as popups and markers) to the first map
+            var popup = new mapboxgl.Popup()
+                .setText('Fox Island, Washington');
+        
+            var marker = new mapboxgl.Marker({color:'mediumpurple'})
+               .setLngLat([-122.6467990552483, 47.2581321592218]) // starting position [lng, lat] 
+               .setPopup(popup)
+               .addTo(map);
+
+            // 2.4 Add arguments to disable the map interactivity here
+            // Disable drag and zoom handlers.
+
+            // Disable drag and zoom handlers.
+               map.dragPan.disable();
+               map.scrollZoom.disable();
+               map.boxZoom.disable();
+               map.dragRotate.disable();
+               map.keyboard.disable();
+               map.doubleClickZoom.disable();
+               map.touchZoomRotate.disable();
+               map.touchZoomRotate.disableRotation();
+            
+    //MAP 2 JAVASCRIPT 
+            // 2.5.3 Then initialize the 2nd map
+            var map2 = new mapboxgl.Map({
+                   container: 'map2', // id of a div on your page, where the map will be inserted
+                   style: 'mapbox://styles/mapbox/dark-v11', // the style URL 'mapbox://styles/mapbox/streets-v11' 
+                   center: [-157.7437413639522, 21.390629098040446], // starting position [lng, lat] eg. [-122.6788, 45.5212]
+                   zoom: 11 // starting zoom 
+               });
+
+            // 2.5.4 Add any other variables (such as markers) to the second map
+            var popup2 = new mapboxgl.Popup()
+                .setText('Kailua, Hawaii');
+        
+            var marker2 = new mapboxgl.Marker({color:'lightgreen'})
+               .setLngLat([-157.73530907320057, 21.387041845918194]) // starting position [lng, lat] 
+               .setPopup(popup2)
+               .addTo(map2);
+            
+            // 2.5.5 Add arguments to disable the second map's interactivity here
+            // Disable drag and zoom handlers.
+               map2.dragPan.disable();
+               map2.scrollZoom.disable();
+               map2.boxZoom.disable();
+               map2.dragRotate.disable();
+               map2.keyboard.disable();
+               map2.doubleClickZoom.disable();
+               map2.touchZoomRotate.disable();
+               map2.touchZoomRotate.disableRotation();
+            
+    //MAP 3 JAVASCRIPT 
+            // 2.6 Then initialize the 3rd map
+            var map3 = new mapboxgl.Map({
+                   container: 'map3', // id of a div on your page, where the map will be inserted
+                   style: 'mapbox://styles/mapbox/dark-v11', // the style URL 'mapbox://styles/mapbox/streets-v11' 
+                   center: [-123.08735991733485, 44.04758816391025], // starting position [lng, lat] eg. [-122.6788, 45.5212]
+                   zoom: 11 // starting zoom 
+               });
+            
+            // 2.5.4 Add any other variables (such as markers) to the third map
+            var popup3 = new mapboxgl.Popup()
+                .setText('Eugene, Oregon');
+        
+            var marker3 = new mapboxgl.Marker({color:'lightblue'})
+               .setLngLat([-123.08492215817657, 44.04159159439386, ]) // starting position [lng, lat] 
+               .setPopup(popup3)
+               .addTo(map3);
+            
+            // 2.5.5 Add arguments to disable the third map's interactivity here
+            // Disable drag and zoom handlers.
+               map3.dragPan.disable();
+               map3.scrollZoom.disable();
+               map3.boxZoom.disable();
+               map3.dragRotate.disable();
+               map3.keyboard.disable();
+               map3.doubleClickZoom.disable();
+               map3.touchZoomRotate.disable();
+               map3.touchZoomRotate.disableRotation();
+
+        </script>
+  </body>
+</html>
