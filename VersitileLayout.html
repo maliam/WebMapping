@@ -1,0 +1,113 @@
+<!-- A Versatile Layout for Full-screen Maps by Andy Cochran
+Andy Cochran 
+From https://medium.com/nyc-planning-digital/a-versatile-layout-for-full-screen-maps-229cec508b22 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Attractions in Washington DC </title>
+
+    
+    <!-- JavaScript Libraries-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.js"></script>
+
+  
+    <!-- CSS Links -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet" />
+    <link href="VersitileLayout.css" rel="stylesheet" />
+    
+    
+</head>
+
+<body>
+
+    <div class="site-header">
+        <strong class="site-title">Attractions in Washington DC</strong>
+    </div>
+
+    <div class="site-main grid-x has-content-open">
+
+        <div class="search-container cell medium-3 large-2">
+            <input type="text" placeholder="Search..." class="search" />
+            <ul class="search-results no-bullet">
+                <li>Bicycling</li>
+                <li>Music</li>
+                <li>Theatres</li>
+                <li>Bars</li>
+            </ul>
+        </div>
+        
+        <div class="map-container cell medium-auto large-order-2">
+             <!--  ADD iframe here, inside the versitle layout's map container (VI.2.)   -->
+                 <!--  ADD iframe here, inside the Versatile Layout's map container   -->
+      	         <iframe src="filter-markers.html" title="Map"></iframe> 
+
+        </div>
+
+        <!--  Sidebar panel  -->
+        <div class="sidebar cell medium-3 large-2 large-order-1 show-for-medium">
+            <h5>Sidebar</h5>
+            <ul>
+                <li><a class="content-link" href="#">Open Content Description</a></li>
+                
+            </ul>
+                
+            <h5>More Resources</h5>
+                
+            <ul>
+                <li><a class="content-link" href="https://dc.gov/page/visitors-resource-center">Vistors Resource Center</a></li>
+                
+                <li><a class = "content-link" href="https://washington.org/#">The Official Tourism Site of DC</a></li>
+                
+                <li><a class = "content-link" href="https://www.tripadvisor.com/Attractions-g28970-Activities-Washington_DC_District_of_Columbia.html">More Ideas at TripAdvisor</a></li>
+                
+            </ul>
+
+            <hr />
+
+        </div>
+
+        <div class="content-close-button-container">
+            <a href="#" class="content-close-button">×</a>
+        </div>
+        
+        <!--  Content panel  -->
+        <div class="content cell large-5 large-order-3">
+            <h2>Plan your perfect trip to DC!</h2>
+            <p>Washington D.C. is the perfect place to plan your next vacation. Whether you are traveling with a family, travelling alone, or with a couple of friends, there's something here for everyone! </p>
+            <p>This dashboard is a compilation some of our must-see and must-do activities in the area. The attractions have been categorized into the following categories: 1) theatre, 2) bars, 3) bicyclying routes, and 4) music venues. Please use the legend in the top right of the screen to filter (check and uncheck) categories of interest.</p>
+            <p>If you're interested in learning more about all of the things Washington DC has to offer, please refer to the sidebar with a list of more resources.</p>
+            <p> We hope you enjoy your stay!</p>
+        </div>
+
+    </div>
+
+    <script>
+       
+        $(document).ready(function() {
+
+            $('.content-close-button').click(function() {
+                $('.content-close-button').hide();
+                $('.content').hide();
+                $('.site-main').removeClass('has-content-open')
+
+                // When the map is resized programmatically, window resize must be triggered so that the map renders in the newly allotted space.
+                window.dispatchEvent(new Event('resize'));
+
+            });
+
+            $('.content-link').click(function() {
+                $('.content-close-button').show();
+                $('.content').show();
+                $('.site-main').addClass('has-content-open')
+                window.dispatchEvent(new Event('resize'));
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
