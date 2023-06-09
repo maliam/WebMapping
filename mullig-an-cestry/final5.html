@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset='utf-8' />
+        <title>Mullig-an-Cestry</title>
+        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+        <!-- 1.1.  Include the reference to the Mapbox JavaScript here in the <head> of the page  -->
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>  
+        <!--    1.2 Include the reference to the Mapbox CSS here in the <head> of the page  -->
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+        
+        <!--Load fonts from Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner&display=swap" rel="stylesheet">
+
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+
+        <style>
+            /* 1.1 CSS for the body of the webpage */
+                    body { 
+                        margin:50px; 
+                        padding:0; 
+                        background-color:floralwhite;
+                    }
+            /* Overrides the pop-up width slightly bigger min-width than the default Mapbox CSS*/
+                    .mapboxgl-popup {
+                        min-width: 500px;
+                        /*add the css for the popup font here */
+                        font-family: 'Jacques Francois', serif;
+                    }
+            /* CSS for the popup image */
+                    .popupImage{
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 50%;
+                    }
+            /* CSS for the title banner */
+                    #title { z-index: 9999; 
+                         background-color:antiquewhite; 
+                         opacity: 90%;
+                         text-align: center;
+                         font-family: 'Jacques Francois', serif;
+                    }
+            /* CSS for the map titles */
+                    #maptitle {
+                        font-family: 'Edu TAS Beginner', cursive;
+                        color: sienna
+                    }
+            /* CSS for the body text throughout the webpage */
+                    #bodytext{
+                        font-family: 'Jacques Francois', serif;
+                        color: #653E12;
+                    }
+            
+             /* CSS for map instructions */
+                    #mapinfo{
+                        font-family: 'Jacques Francois', serif;
+                        color: dimgray;
+                        background-color: #d5dbe6
+            }
+        
+        
+            /*CSS FOR THE DIFFERENT MAPS*/
+                    /* 1.2 CSS for the 1940s map */
+                    #forty_map { position:relative;
+                        height:400px; 
+                        width:900px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                                }
+                    /* 1.3 CSS for the 1930s map */
+                    #thirty_map { position:relative; 
+                        height:400px; 
+                        width:900px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                                }
+                    /* 1.4 CSS for the 1920s map */
+                    #twenty_map { position:relative; 
+                        height:400px; 
+                        width:900px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                                }
+                    /* 1.5 CSS for the 1910s map */
+                    #ten_map { position:relative; 
+                        height:400px; 
+                        width:900px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                            }
+                    /* 1.6 CSS for the 1900s map */
+                    #hundred_map { position:relative; 
+                        height:400px; 
+                        width:900px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                                }
+                    /* 1.7 CSS for the for the maternal vs paternal */
+                    #mat_pat_map { 
+                        position:relative; 
+                        height:400px; 
+                        width:75%;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                                 }
+            
+           
+        /*CSS FOR THE DIFFERENT fly to buttons*/ 
+            /* 1.5 CSS for the "fortyFly" button  */
+                    #fortyfly {
+                        display: block; /* displays over the map */
+                        position: relative; /* displays over the map */
+                        margin: 0px auto; 
+                        width: 35%;
+                        height: 40px;
+                        padding: 10px;
+                        border: none;
+                        border-radius: 3px; /* rounded corners */
+                        font-size: 16px;
+                        font-family: 'Jacques Francois', serif;
+                        text-align: center;
+                        font-weight: bold;
+                        color: sienna;
+                        background: #f5bfba;
+                    }
+            /* 1.6 CSS for the "thirtyFly" button  */
+                    #thirtyfly {
+                        display: block; /* displays over the map */
+                        position: relative; /* displays over the map */
+                        margin: 0px auto; 
+                        width: 35%;
+                        height: 40px;
+                        padding: 10px;
+                        border: none;
+                        border-radius: 3px; /* rounded corners */
+                        font-size: 16px;
+                        font-family: 'Jacques Francois', serif;
+                        text-align: center;
+                        font-weight: bold;
+                        color: sienna;
+                        background: #f5bfba;
+                    }
+             /* 1.5 CSS for the "twentyFly" button  */
+                    #twentyfly {
+                        display: block; /* displays over the map */
+                        position: relative; /* displays over the map */
+                        margin: 0px auto; 
+                        width: 35%;
+                        height: 40px;
+                        padding: 10px;
+                        border: none;
+                        border-radius: 3px; /* rounded corners */
+                        font-size: 16px;
+                        font-family: 'Jacques Francois', serif;
+                        text-align: center;
+                        font-weight: bold;
+                        color: sienna;
+                        background: #f5bfba;
+                    }
+            /* 1.6 CSS for the "tenFly" button  */
+                    #tenfly {
+                        display: block; /* displays over the map */
+                        position: relative; /* displays over the map */
+                        margin: 0px auto; 
+                        width: 35%;
+                        height: 40px;
+                        padding: 10px;
+                        border: none;
+                        border-radius: 3px; /* rounded corners */
+                        font-size: 16px;
+                        font-family: 'Jacques Francois', serif;
+                        text-align: center;
+                        font-weight: bold;
+                        color: sienna;
+                        background: #f5bfba;
+                    }
+            /* 1.6 CSS for the "hundredFly" button  */
+                    #hundredfly {
+                        display: block; /* displays over the map */
+                        position: relative; /* displays over the map */
+                        margin: 0px auto; 
+                        width: 35%;
+                        height: 40px;
+                        padding: 10px;
+                        border: none;
+                        border-radius: 3px; /* rounded corners */
+                        font-size: 16px;
+                        font-family: 'Jacques Francois', serif;
+                        text-align: center;
+                        font-weight: bold;
+                        color: sienna;
+                        background: #f5bfba;
+                    }
+            
+            
+        /* formatting CSS */
+            
+            /* CSS that you can use to make items be in the middle of the page*/
+                    .center {
+                        z-index: 2;
+                        width: 450px;
+                        height: auto;
+                        transition: width 2s, height 2s; /* this is the time it takes for the container to transition */
+                        border-radius: 7px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto; 
+                    }
+            
+            /* CSS that you can use to make items be in the middle of the page*/
+                    .centertitle {
+                        z-index: 2;
+                        width: 230px;
+                        height: 40px;
+                        transition: width 2s, height 2s; /* this is the time it takes for the container to transition */
+                        border-radius: 7px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto; 
+                    }
+            
+            /* creative commons license formatting */
+                    .ccimage {
+                      display: block;
+                      margin-left: auto;
+                      margin-right: auto;
+                      width: 10px;
+                    }
+            
+            /* CSS for putting images into columns and rows (a grid) */
+                    * {
+                      box-sizing: border-box;
+                    }
+                    .column {
+                      float: left;
+                      width: 25%;
+                      padding: 5px;
+                    }
+            
+                    /* Clearfix (clear floats) */
+                    .row::after {
+                      content: "";
+                      clear: both;
+                      display: table;
+                    }
+            
+            
+            /* CSS for creating a legend *
+                 /*  style for items with the class "LegendContainer" */
+                    .LegendContainer {
+                        z-index: 2;
+                        width: 450px;
+                        height: 40px;
+                        background: antiquewhite;
+                        transition: width 2s, height 2s; /* this is the time it takes for the container to transition */
+                        border-radius: 7px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                        font-family: 'Jacques Francois', serif;
+                       }
+                    /*  style for items with the class "descriptionPanel" when active */
+                   .LegendContainer:active {
+                     width: 300px;
+                     height: 250px;
+                   }
+                   /* style for items with the class "legendItem" */
+                   .legendItem {
+                       margin: 0px;
+                       display:inline-block;
+                       margin:auto;
+                       transform: translate(50%, 50%);
+                   }
+                   /* style for items with the class "layerDescription" */
+                   .layerDescription {
+                     color: sienna;
+                   }
+                   .mulligan {
+                         color:#104d9e;
+                   }
+                   .grapsas{
+                         color:#556eec;
+                   }
+                   .pemberton{
+                         color:#ec558a;
+                   }
+                   .larson{
+                         color:#9d1042;
+                   }
+            
+        </style>
+        
+        
+    </head>
+
+    <body>
+        
+            <!-- 2.1 Title structure --> 
+            <!-- div for the title -->
+            <div id='title'>
+                    <h1 style="color: saddlebrown">mullig-an-cestry</h1>
+                    <h3 style="color: saddlebrown">mapping where my family appears on US Census Population Schedules (1900-1940)</h3>
+                    <h3 style="color: saddlebrown">by Malia Mulligan</h3>
+            </div>
+        
+            <!--Family Tree image grid structure -->
+            <div class="row">
+              <div class="column">
+                <img src="photos/grapsas_chart.png" alt="Grapsas Family Tree" style="width:100%">
+              </div>
+              <div class="column">
+                <img src="photos/mulligan_chart.png" alt="Mulligan Family Tree" style="width:100%">
+              </div>
+              <div class="column">
+                <img src="photos/larson_chart.png" alt="Larson Family Tree" style="width:100%">
+              </div>
+              <div class="column">
+                <img src="photos/pemberton_chart.png" alt="Pemberton Family Tree" style="width:100%">
+              </div>
+            </div>
+        
+            <!--Structure for the introduction of the webpage.-->
+            <div id = 'bodytext'> 
+                <p>During spring term of my freshman year at the University of Oregon, I took a research class called “Writing the Family, Writing the Self.” In this class, we researched our ancestry for an entire term and created personal websites where we catalogued all of the research that we did. </p>
+                <p> If you know the full names of each of your grandparents (including your grandmothers' maiden names), the US census can be an extremely valuable tool to kickstart your genealogical research. For instance, in the ancestral charts above you can see that my ancestry can be broken down into four branches, one for each of my grandparents. In my family, my four branches are 1) the Grapsas branch, 2) the Mulligan branch, 3) the Larson branch, and 4) the Pemberton branch. </p>
+                <p>Records from the US census have a 72-year rule, which means that census records do not become publicly available until 72 years after its "Census Day." This means that in 2020 when I started my research, the most recent publicly available census was the 1940 census. However, 2022 was a big year in geneaology as the 1950 census also became available!</p>
+                <p>I started with the 1940 census, and with each of my grandparents names. Finding thier names when they were children in the census records meant that they were living in the households of their parents. This makes going back a generation, and finding your grandparents parents in the census, even if you dind't previously know their names, possible. </p>
+                <p>Of course, for the women in your ancestry, the census will not tell you a woman's maiden name unless they are unmarried or also children living with their parents. This makes using other types of records like death and marriage certificates, or even interviewing your family members, necessary.</p>
+                <p>If census surveyors recorded information correctly and thoroughly, these population schedules documented information on the house number, street name, city, county, and state for each household documented in the census for each year. I used this information to geocode each household.</p>
+                
+                <div class = center>
+                    <!--Census Data images in rows-->
+                    <img src="photos/grapsas_1940.png" alt="1940 Original Graspsas Popultion Schedule" style="width:100%"> <br> <br>
+                    <img src="photos/mulligan_1940.png" alt="1940 Original Mulligan Population Schedule" style="width:100%"> <br><br>
+                    <img src="photos/larson_1940.png" alt="1940 Original Larson Population Schedule" style="width:100%"> <br><br>
+                    <img src="photos/pemberton_1940.png" alt="1940 Original Pemberton Populaiton Schedule" style="width:100%"> <br><br>
+                </div>    
+        
+            <hr>
+        
+            <!-- The power of mapping section-->
+            <div id ='maptitle'> 
+                <h2 class=centertitle>The Power of Mapping</h2> 
+            </div>
+                
+            <div id = 'bodytext'>
+                <p>A vital part of genealogical research is understanding the flow of how people migrate and move (or don’t move), which makes the concept of “place” vital to understanding your ancestry. In a way, family trees are simplified maps... but actually mapping the information provides you with context and a with a physical way to experience the lives your ancestors lived. Maps are appropriate vehicles for genealogical data not only during the research phase, but also as a way to present and share the information with other family members. </p>
+                <p>The maps below explore the spatial and temporal distribution of my genealogy as recorded in US Census Bureau Population Schedules from 1900 to 1940 through 6 different maps.<p>
+                <p>Please use the first five maps below to go on a guided tour of the data available for each household during the census year it is exploring. To begin the tour, click the button beaneath the map labeled "Fly to the next household!" To read more information, click the marker situated in the middle of the map, and click anywhere to close the pop-up. Click the "Fly to the next household" button to automatically zoom to another household.</p>
+                <p>Please use the last map labeled 'Distribution of Maternal vs Paternal Family 1900-1940' to explore all 40 years of census data (from 1900 to 1940).<p>
+            </div>
+                
+            <hr>
+        
+            <!-- 2.2 1940 map structure--> 
+            <!-- Text title for 1940s map -->
+        
+                
+            <div id ='maptitle'>
+                <h2 class=centertitle>Sixteenth Census: 1940</h2>
+            </div>
+        
+            <!-- create a container for a map legend --> 
+               <div class="LegendContainer">
+                 <div class="legendItem">
+                     <span class="mulligan">&#11044;</span>
+                     <span class="layerDescription">Mulligan</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="grapsas">&#11044;</span>
+                     <span class="layerDescription">Grapsas</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="larson">&#11044;</span>
+                     <span class="layerDescription">Larson</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="pemberton">&#11044;</span>
+                     <span class="layerDescription">Pemberton</span>
+                 </div>
+               </div>
+        
+            <br> 
+        
+            <!-- div for 1940s map -->
+            <div id='forty_map'></div>
+            <br/>
+            <!-- fly to button for 1940s map -->
+            <button id='fortyfly'>Click here to fly to the Next Household!</button>
+                
+            <div id = 'mapinfo'>
+                <p>Instructions: Begin a tour of each household by clicking the button beaneath the map labeled "Fly to the next household!" To read more information, click the marker situated in the middle of the map, and drag the map view to scroll through the popup. Click anywhere to close the pop-up. Click the "Fly to the next household" button to automatically zoom to another household.</p>
+            </div>
+                
+            <div id = 'bodytext'>
+                <p>The 1940 and 1930 US Censuses were arguably the most comprehensive US census surveys that had ever been distributed at that point. For instance, while previous surveys usually asked if a home was rented or owned, the 1940 and 1930 survey recorded the value of homes, if owned, or monthly rent prices, if rented. They also recorded extra occupation and employment information like an individual's income in the previous year. The 1940 census was particularly unique in that it recorded the highest grade of school completed for every individual. </p>
+            </div>
+            <br>
+            <hr>
+        
+                
+        
+            <!-- 2.3 1930 map structure--> 
+            <div id ='maptitle'>
+                <h2 class=centertitle>Fifteenth Census: 1930</h2>
+            </div>     
+            <!-- create a container for a map legend --> 
+               <div class="LegendContainer">
+                 <div class="legendItem">
+                     <span class="mulligan">&#11044;</span>
+                     <span class="layerDescription">Mulligan</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="grapsas">&#11044;</span>
+                     <span class="layerDescription">Grapsas</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="larson">&#11044;</span>
+                     <span class="layerDescription">Larson</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="pemberton">&#11044;</span>
+                     <span class="layerDescription">Pemberton</span>
+                 </div>
+               </div>
+            <br> 
+        
+            <!-- div for 1930s map -->
+            <div id='thirty_map'></div>
+            <br/>
+            <!-- fly to button for 1930s map -->
+            <button id='thirtyfly'>Click here to fly to the Next Household!</button>
+                
+            <!-- descriptive text for 1930s map -->
+            <div id = 'mapinfo'>
+                <p>Instructions: Begin a tour of each household by clicking the button beaneath the map labeled "Fly to the next household!" To read more information, click the marker situated in the middle of the map, and click anywhere to close the pop-up. Click the "Fly to the next household" button to automatically zoom to another household.</p>
+            </div>
+            <div id = 'bodytext'>
+                <p>The 1930 census was particularly unique in that it recorded all individuals' mother tongue language, whether they were able to read and write, year of immigration (where applicable), naturalization status (where applicable), and and veteran status. My favorite fact that this census recorded about each household was whether or not they owned a radio set.</p>
+            </div>
+            <br>
+            <hr>
+        
+        
+            <!-- 2.4 1920 map structure--> 
+        
+             <div id ='maptitle'>
+                <h2 class=centertitle>Fourteenth Census: 1920</h2>
+            </div>    
+            
+            <!-- create a container for a map legend --> 
+               <div class="LegendContainer">
+                 <div class="legendItem">
+                     <span class="mulligan">&#11044;</span>
+                     <span class="layerDescription">Mulligan</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="grapsas">&#11044;</span>
+                     <span class="layerDescription">Grapsas</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="larson">&#11044;</span>
+                     <span class="layerDescription">Larson</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="pemberton">&#11044;</span>
+                     <span class="layerDescription">Pemberton</span>
+                 </div>
+               </div>
+        
+            <br> 
+        
+            <!-- div for 1920s map -->
+            <div id='twenty_map'></div>
+            <br/>
+            <!-- fly to button for 1920s map -->
+            <button id='twentyfly'>Click here to fly to the Next Household!</button>
+            <div id = 'mapinfo'>
+                <p>Instructions: Begin a tour of each household by clicking the button beaneath the map labeled "Fly to the next household!" To read more information, click the marker situated in the middle of the map, and click anywhere to close the pop-up. Click the "Fly to the next household" button to automatically zoom to another household.</p>
+            </div>
+            <div id = 'bodytext'>
+                <p>The 1920 census was particularly unique in that it recorded the year that individuals who immigrated were naturalized. It also recorded the mother tongue and birthplace of each individual's parents </p>
+            </div>   
+            <br>
+            <hr>
+        
+        
+            <!-- 2.5 1910 map structure--> 
+                
+            <div id ='maptitle'>
+                <h2 class=centertitle>Thirteenth Census: 1910</h2>
+            </div>
+        
+            <!-- create a container for a map legend --> 
+               <div class="LegendContainer">
+                 <div class="legendItem">
+                     <span class="mulligan">&#11044;</span>
+                     <span class="layerDescription">Mulligan</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="grapsas">&#11044;</span>
+                     <span class="layerDescription">Grapsas</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="larson">&#11044;</span>
+                     <span class="layerDescription">Larson</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="pemberton">&#11044;</span>
+                     <span class="layerDescription">Pemberton</span>
+                 </div>
+               </div>
+        
+            <br> 
+        
+            <!-- div for 1910s map -->
+            <div id='ten_map'></div>
+            <br/>
+            <!-- fly to button for 1910s map -->
+            <button id='tenfly'>Click here to fly to the Next Household!</button>
+                
+            <div id = 'mapinfo'>
+                <p>Instructions: Begin a tour of each household by clicking the button beaneath the map labeled "Fly to the next household!" To read more information, click the marker situated in the middle of the map, and click anywhere to close the pop-up. Click the "Fly to the next household" button to automatically zoom to another household.</p>
+            </div>
+            <div id = 'bodytext'>
+                <p>The 1910 census was particularly unique in that it recorded the year that individuals who immigrated were naturalized. It also recorded the mother tongue and birthplace of each individual's parents </p>
+            </div>
+            <hr>
+        
+        
+            <!-- 2.5 1900 map structure--> 
+                
+            <div id ='maptitle'>
+                <h2 class=centertitle>Twelfth Census: 1900</h2>
+            </div>
+        
+                <!-- create a container for a map legend --> 
+               <div class="LegendContainer">
+                 <div class="legendItem">
+                     <span class="mulligan">&#11044;</span>
+                     <span class="layerDescription">Mulligan</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="grapsas">&#11044;</span>
+                     <span class="layerDescription">Grapsas</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="larson">&#11044;</span>
+                     <span class="layerDescription">Larson</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="pemberton">&#11044;</span>
+                     <span class="layerDescription">Pemberton</span>
+                 </div>
+               </div>
+        
+            <br> 
+        
+            <!-- div for 1900s map -->
+            <div id='hundred_map'></div>
+            <br/>
+            <!-- fly to button for 1900s map -->
+            <button id='hundredfly'>Click here to fly to the Next Household!</button>
+            <br>
+            <div id = 'mapinfo'>
+                <p>Instructions: Begin a tour of each household by clicking the button beaneath the map labeled "Fly to the next household!" To read more information, click the marker situated in the middle of the map, and click anywhere to close the pop-up. Click the "Fly to the next household" button to automatically zoom to another household.</p>
+            </div>
+            <div id = 'bodytext'>
+                <p>The 1900 census was  focused on information related to a person's immigration and naturalization status, as well as their ability to read, write, and speak English. </p>
+            </div>
+            <br>
+            <hr>
+                
+                
+            <!-- Mat Pat Map structure--> 
+            <div id ='maptitle'>
+                <h2> Distribution of Maternal vs Paternal Family 1900-1940</h2> 
+            </div>
+            <!-- div for 1900s map -->
+            <div id='mat_pat_map'></div>
+        
+            <br>
+        
+            <!-- create container for mat/pat map legend --> 
+               <div class="LegendContainer">
+                 <div class="legendItem">
+                     <span class="mulligan">&#11044;</span>
+                     <span class="layerDescription">Mulligan</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="grapsas">&#11044;</span>
+                     <span class="layerDescription">Grapsas</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="larson">&#11044;</span>
+                     <span class="layerDescription">Larson</span>
+                 </div>
+                 <div class="legendItem">
+                     <span class="pemberton">&#11044;</span>
+                     <span class="layerDescription">Pemberton</span>
+                 </div>
+               </div>
+        
+            <!--Supporting information for the mat/pat map .-->
+            <div id = 'bodytext'>
+                <p>This map does not accurately demonstrate ALL of the locations where my family lived during this period for a couple of reasons. The first reason is that these census surveys were only conducted every 10 years, which means they can only capture information for these particular survey years, and not those in between. Another reason is that I have not been able to track down every record for every family for every year. There are certain individuals that I know were living in the US during this time through immigration records, but which I cannot find on census records. This could be due to the surveyor recording names and information incorrectly, or individuals not participating in the census.</p>
+            </div>
+        
+            <hr>
+        
+            
+            <div id ='maptitle'> <h2>The Importance of Genealogy</h2> </div>
+            <div id = 'bodytext'>
+                <p>Learning about your ancestors, finding them on the census and in other documents, and rooting through boxes of old pictures and albums to put a face to a name is extremely rewarding, exciting, and special. </p>
+            </div>
+        
+            <div class="row">
+              <div class="column">
+                <img src="photos/Johnson.jpg" alt= "Black and white photograph of the Johnson Family" style="width:100%">
+              </div>
+              <div class="column">
+                <img src="photos/grapsas.jpg" alt= "Black and white photograph of the Grapsas and Thomas Family standing"style="width:100%">
+              </div>
+              <div class="column">
+                <img src="photos/pearl.jpg" alt= "Pearl Fleming and Donald Mulligan sitting at a table with food"style="width:100%">
+              </div>
+              <div class="column">
+                <img src="photos/larson.jpg" alt= "Ira Jr. Larson, Elsie Gottman, and John sitting" style="width:100%">
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <img src="photos/olivia.jpg" alt= "Olivia Dendrinos-Thomas sitting in a chair" style="width:100%">
+              </div>
+              <div class="column">
+                <img src="photos/grapsas_sisters.jpg" alt= "The three daughters of Gust and Penelope Grapsas: Elaine, Katherine, and Stamatia" style="width:100%">
+              </div>
+              <div class="column">
+                <img src="photos/pemberton.jpg" alt= "Cyril, Mary, and Mildred sitting with their cat and dog." style="width:100%">
+              </div>
+              <div class="column">
+                <img src="photos/amanda.png" alt= "Amanda Dahlen-Larson looking out of a train" style="width:100%">
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <img src="photos/elizabeth.png" alt= "Black and white portrait of Mary Jennie Johnson" style="width:100%">
+              </div>
+              <div class="column">
+                <img src="photos/ira_amanda.png" alt= "Black and white photograph of Ira Senior and Amanda Dahlen" style="width:100%">
+              </div>
+              <div class="column">
+                <img src="photos/mildred.png" alt= "Sepia photograph of Mildred Yokom-Pemberton" style="width:100%">
+              </div>
+              <div class="column">
+                <img src="photos/karen.png" alt= "sepia photograph of Karen Olson-Johnson" style="width:100%">
+              </div>
+            </div>
+                
+                
+            <div id = 'bodytext'>
+                <p>All photographs are in my family's personal collection. The Census data was accessed through <a href="https://www.ancestry.com/">Ancestry</a>, and was originally recorded by the <a href="https://www.census.gov/">US Census Bureau.</a> These records are now in the public domain due to the <a href="https://www.census.gov/history/www/genealogy/decennial_census_records/the_72_year_rule_1.html#:~:text=The%20U.S.%20government%20will%20not,Year%20Rule%22%20(92%20Stat.">72 year rule</a>.</p>
+            </div>
+                
+            <!--Add a creative columns license-->
+            <div class="row">
+              <div class="column">
+                <img src="photos/by-nc.png" style="width:50%">
+              </div>
+            </div>
+                
+        <script>
+            
+            // 3.1 Inserct Javascript Mapbox access token
+            mapboxgl.accessToken = 'pk.eyJ1IjoibWFsaWFsaXp6YWJldGgiLCJhIjoiY2s5dWI0dnQ3MWx3YjNscDUyNDdwNXFzMyJ9.9PlcaKUefqemUfB4ZR2n1w'; //  Put your access token between the single quotes.
+
+            
+        //MAP 1: 1940s FAMILY JAVASCRIPT 
+            // 4.1: marker and fly-to variables for the 1940s map. 
+                var forty_clickCounter = 1; // keep track of the number of times the user has clicked
+                var forty_flyLocations = [[-87.61719, 41.68821],[-87.2507,41.53457], [-87.26244,41.5256], [-122.43143, 37.7727], [-116.87756, 33.93866], [-157.81175, 21.27043], [-157.8249534, 21.306238476411668]]; // Where the map will fly to
+
+                // 4.2 Then initialize the 1940s map
+                var forty_map = new mapboxgl.Map({
+                        container: 'forty_map', // id of a div on your page, where the map will be inserted
+                        style: 'mapbox://styles/malializzabeth/clhi5rdgq00if01q16u3rb0wj', // the style URL 
+                        center: [-99.27162960230424, 39.97230387887807],
+                        zoom: 2, // starting zoom
+                        minZoom: 2, // pick your own
+                        // don't allow user to zoom in more than 15 
+                        maxZoom: 15,
+                    });
+
+                // 4.3 add the fly button the button.
+                document.getElementById('fortyfly').addEventListener('click', function () {
+                    console.log("flying to " + forty_flyLocations[forty_clickCounter])
+                    forty_map.flyTo({
+                        // look up the value of the click counter in the flyLocations array.
+                        center: forty_flyLocations[forty_clickCounter],
+                        zoom: 14
+                    });
+                    // update the click counter to the next location
+                    forty_clickCounter = forty_clickCounter +1;
+                    if (forty_clickCounter > forty_flyLocations.length-1) forty_clickCounter = 0; // if the user has clicked more times than the length of the flyLocations array, reset it to 0.
+                }); 
+                   // Add zoom controls 
+                   forty_map.addControl(new mapboxgl.NavigationControl());
+                   // Disable drag and zoom handlers.
+                   forty_map.scrollZoom.disable();
+                   forty_map.boxZoom.disable();
+                   forty_map.dragRotate.disable();
+                   forty_map.doubleClickZoom.disable();
+                   forty_map.touchZoomRotate.disable();
+                   forty_map.touchZoomRotate.disableRotation();
+            
+                var popup_content = '<h2>1940: Constantine Grapsas & Penelope Thomas</h2>';
+                    popup_content += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/katherine-grapsas/constantine-grapsas">Constantine (Gust) Grapsas</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/katherine-grapsas/penelope-thomas">Penelope Thomas</a>, <a href= "https://sites.google.com/view/mullig-an-cestry/paternal-lineage/katherine-grapsas">Katherine Grapsas</a>';
+                    popup_content += '<h3> Residence: Rents 11326 Prairie Avenue, Chicago, IL for $55 a month. </h3>'
+                    popup_content += '<p>Constantine (Gust) Grapsas (paternal great-grandfather): "Head of the household", 42 years old, born in Greece, Employed as a grocer at a store he owns, completed school through the eighth grade.</p>';
+                    popup_content += '<p>Penelope Grapsas (paternal great-grandmother): Wife to Gust, 29 years old, born in Greece, completed school through the eighth grade. </p>';
+                    popup_content += '<p>Gust and Penelope had three daughters: Elaine (8 years old, in the second grade), Katherine (5 years old), and Stamatia (also 5 years old).</p>'
+                    popup_content += '<img class="popupImage" alt = "Grapsas sisters" src="photos/grapsas_sisters.jpg">' ;
+                    popup_content += '<p class= center> Elaine, Katherine, Stam </p>'
+                // Add popups and markers to the map
+                var popup = new mapboxgl.Popup()
+                    .setHTML(popup_content)
+                var marker = new mapboxgl.Marker({color:'#556eec'})
+                    .setLngLat(forty_flyLocations[0]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup) //add the popup to the marker 
+                    .addTo(forty_map);
+            
+            
+                var popup_content2 = '<h2>1940: Lawrence Mulligan & Pearl Fleming</h2>';  
+                    popup_content2 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/lawrence-emerson-mulligan">Lawrence Mulligan</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming">Pearl Fleming</a>';
+                    popup_content2 += '<h3> Residence: Owned 220 S Linda Street, Hobart, IN, which was worth $2,000.</h3>'
+                    popup_content2 += '<p>Lawrence Mulligan (paternal great-grandfather): "Head of the house", 51 years old, born in Pennsylvania, Employed as a pipe fitter at a steel mill. Completed school through the 8th grade.</p>';
+                    popup_content2 += '<p>Pearl Fleming-Mulligan (paternal great-grandmother): Wife of Lawrence. 42 years old, born in Indiana. Completed school through the 8th grade. </p>';
+                    popup_content2 += '<p>Lawrence and Pearl had 6 children living in their household in 1940: Veara (18 years old, in her 4th year of highschool), James (17 years old, in his 3rd year of highschool), Elizabeth (15 years old, in the 8th grade), Harry (11 years old, in the 5th grade), Donald (9 years old, in the 4th grade), and Loraine (6 years old, in the 1st grade).</p>'
+                    popup_content2 += '<img class="popupImage" alt = "Pearl Mulligan-Fleming" src="photos/pearl.jpg">' ;
+                    popup_content2 += '<p class = center>Pearl Fleming & Donald Mulligan.</p>';
+                var popup2 = new mapboxgl.Popup()
+                    .setHTML(popup_content2)
+                var marker2 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(forty_flyLocations[1]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup2) //add the popup to the marker 
+                    .addTo(forty_map);
+            
+                
+                var popup_content3 = '<h2>1940: Elias Fleming & Harriet Curtis</h2>';
+                    popup_content3 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming/elias-fleming">Elias Fleming</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming/harriet-curtis">Harriet Curtis</a>';
+                    popup_content3 += '<h3> Residence: Rents 252 8th Street, Hobart, IN for $7 (?!) a month.</h3>'
+                    popup_content3 += '<p>Elias Fleming (paternal great-great-grandfather): Head of the household. 80 years old, finished school through the 3rd grade. Retired in 1940. </p>';
+                    popup_content3 += '<p>Harriet Curtis-Fleming (paternal great-great-grandmother): Wife of Elias. 80 years old, finished school through the 4th grade. </p>';
+                    popup_content3 += '<p>Also living in their household was their granddaughter Ruth Mulligan, granddaughter of Elias & Harriet, daughter of Lawrence and Pearl Mulligan. She was 21 years old, born in Indiana, and finished school through her first year of highschool. </p>';
+                var popup3 = new mapboxgl.Popup()
+                    .setHTML(popup_content3)
+                var marker3 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(forty_flyLocations[2]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup3) //add the popup to the marker 
+                    .addTo(forty_map);
+            
+                
+                var popup_content4 = '<h2>1940: Theodore & Mildred Gottman </h2>'; 
+                    popup_content4 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/elsie-gottman/theodore-gottman">Theodore Gottman</a>';
+                    popup_content4 += '<h3> Residence: Rents 655 Page Street, San Francisco, CA for $32.50 a month. </h3>'
+                    popup_content4 += '<p> Theodore Gottman (maternal great-great grandfather): 51 years old, born in Illinois, finished school through his fourth year of highschool. Employed as a candy maker at a wholesale candy factory. </p>';
+                    popup_content4 += '<p> Mildred Gottman: Second Wife of Theodore, his first wife Jeanette, was my great-great grandmother. Mildred was 44 years old, born in Wisconsin, and finished school through her third year of highschool.</p>';
+                var popup4 = new mapboxgl.Popup()
+                    .setHTML(popup_content4)
+                var marker4 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(forty_flyLocations[3]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup4) //add the popup to the marker 
+                    .addTo(forty_map);
+            
+            
+                var popup_content5 = '<h2>1940: William Pemberton & Elizabeth Hampton </h2>'; 
+                    popup_content5 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton/william-samuel-pemberton">William Pemberton</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton/elizabeth-reed-hampton">Elizabeth Hampton</a>';
+                    popup_content5 += '<h3> Residence: Owned 59 Pendelton Road, Banning, CA, which was worth $5,000. </h3>'
+                    popup_content5 += '<p> William Pemberton (maternal great-great grandfather): "head of the house", 81 years old, born in Missouri, and retired in 1940. </p>';
+                    popup_content5 += '<p> Elizabeth Hampton-Pemberton (maternal great-great grandmother): Wife to William, 76 years old, born in Missouri. </p>';
+                    popup_content5 += '<img class="popupImage" alt = "WS Pemberton Residence in Los Angeles" src="photos/ws_house.png">' ;
+                var popup5 = new mapboxgl.Popup()
+                    .setHTML(popup_content5)
+                var marker5 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(forty_flyLocations[4]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup5) //add the popup to the marker 
+                    .addTo(forty_map);
+            
+            
+                var popup_content6 = '<h2>1940: Cyril Pemberton & Mlidred Yokom</h2>'; 
+                    popup_content6 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton">Cyril Pemberton</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/mildred-helena-yokom">Mildred Yokom</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton">Mary Pemberton</a>';
+                    popup_content6 += '<h3> Residence: Owned 2216 Manoa Road, Honolulu HI, which was worth $15,000.</h3>'
+                    popup_content6 += '<p> Cyril Pemberton (maternal great grandfather): "head of the house", 53 years old, born in California, attended school for 17 years. Employed as the chief entemologist at an experimental station. Had a salary of 5000+.</p>';
+                    popup_content6 += '<p> Mildred Yokom-Pemberton (maternal great-grandmother): Wife to Cyril, 42 years old, born in Washington.</p>';
+                    popup_content6 += '<p> Cyril and Mildred had one daughter, 2 years old Mary, who was born in Hawaii.</p>';
+                    popup_content6 += '<img class="popupImage" alt = "Pemberton Family" src="photos/pemberton.jpg">' ;
+                    popup_content7 += '<p> Cyril, Mary, and Mildred</p>';
+                var popup6 = new mapboxgl.Popup()
+                    .setHTML(popup_content6)
+                var marker6 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(forty_flyLocations[5]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup6) //add the popup to the marker 
+                    .addTo(forty_map);
+            
+            
+                var popup_content7 = '<h2>1940: Ira Larson & Elsie Gottman</h2>';
+                    popup_content7 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/ira-kenneth-larson">Ira Jr. Larson</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/elsie-gottman">Elsie Gottman</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson">John Larson</a>';
+                    popup_content7 += '<h3> Residence: Renting 3555 Campbell Avenue, Honolulu HI for $40 a month </h3>'
+                    popup_content7 += '<p> Ira K. Jr Larson (maternal great-grandfather): 27 years old, born in Wisconsin, attended school for 12 years. Employed as a foreman for a steel construction company. Ira had a salary of 2,300.</p>';
+                    popup_content7 += '<p> Elsie Gottman-Larson (maternal great-grandmother): Wife to Ira. 25 years old, born in Illinois.</p>';
+                    popup_content7 += '<p> Ira Jr. and Elise had 2 children. A son, John (4 years old), and a daughter, Eunice (1 year old), who were both born in Hawaii.</p>';
+                    popup_content7 += '<p class= center> Ira, John, and Elsie</p>';
+                var popup7 = new mapboxgl.Popup()
+                    .setHTML(popup_content7)
+                var marker7 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(forty_flyLocations[6]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup7) //add the popup to the marker 
+                    .addTo(forty_map);
+                  
+        //MAP 2: 1930s FAMILY JAVASCRIPT 
+
+                var thirty_clickCounter = 1;
+                var thirty_flyLocations = [[-87.34376, 41.5913],[-87.25688,41.52581], [-87.25695,41.52203], [-87.76101186, 41.91181], [-87.74985103, 41.94756637], [-87.7357717, 41.96907883], [-116.87756, 33.93866]];
+                var thirty_map = new mapboxgl.Map({
+                        container: 'thirty_map',
+                        style: 'mapbox://styles/malializzabeth/clhi5rdgq00if01q16u3rb0wj',
+                        center: [-99.27162960230424, 39.97230387887807],
+                        zoom: 3,
+                        minZoom: 2, // pick your own
+                        // don't allow user to zoom in more than 15 
+                        maxZoom: 15,
+                    });
+                // Add the fly button
+                document.getElementById('thirtyfly').addEventListener('click', function () {
+                    console.log("flying to " + thirty_flyLocations[thirty_clickCounter])
+                    thirty_map.flyTo({
+                        center: thirty_flyLocations[thirty_clickCounter],
+                        zoom: 14 // starting zoom 
+                    });
+
+                    thirty_clickCounter = thirty_clickCounter +1;
+                    if (thirty_clickCounter > thirty_flyLocations.length-1) thirty_clickCounter = 0;
+                }); 
+            
+                   // Add zoom controls 
+                   thirty_map.addControl(new mapboxgl.NavigationControl());
+                   // Disable drag and zoom handlers.
+                   thirty_map.scrollZoom.disable();
+                   thirty_map.boxZoom.disable();
+                   thirty_map.dragRotate.disable();
+                   thirty_map.doubleClickZoom.disable();
+                   thirty_map.touchZoomRotate.disable();
+                   thirty_map.touchZoomRotate.disableRotation();
+            
+                var popup_content8 = '<h2>1930: Apostolos Thomas & Olivia Dendrinos</h2>';
+                    popup_content8 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/katherine-grapsas/penelope-thomas/apostolos-thomas">Apostolos (Paul) Thomas</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/katherine-grapsas/penelope-thomas/olivia-dendrinos">Olivia Dendrinos</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/katherine-grapsas/penelope-thomas">Penelope Thomas</a>';
+                    popup_content8 += '<h3> Residence: Renting 1157 Jackson Street, Gary, IN for $25.20 a month.</h3>'
+                    popup_content8 += '<h3> There is a radioset in this household! </h3>'
+                    popup_content8 += '<p>Paul Thomas (paternal great-great-grandfather): Head of the household, 65 years old, born in Greece, immigrated in 1916, and speaks English. Employed as a janitor at a church. </p>';
+                    popup_content8 += '<p>Olivia Dendrinos-Thomas (paternal great-great-grandmother): Wife to Paul, 50 years old, born in Greece, immigrated in 1916, and speaks English. </p>';
+                    popup_content8 += "<p>Paul and Olivia had 3 children: Penelope (18 years old), George (17), and Eutherpre (16). They were all born in Greece, immigrated with their parents in 1916, and were able to speak English. Also living with them was George Sr, Pauls brother, who was 57 years old, and immigrated in 1906.</p>";
+                    popup_content8 += '<img class="popupImage" alt = "Olivia Dendrinos" src="photos/olivia.jpg">'
+                    popup_content8 += '<p class = center>Olivia Dendrinos-Thomas</p>'
+                var popup8 = new mapboxgl.Popup()
+                    .setHTML(popup_content8)
+                var marker8 = new mapboxgl.Marker({color:'#556eec'})
+                    .setLngLat(thirty_flyLocations[0]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup8) //add the popup to the marker 
+                    .addTo(thirty_map);
+            
+                var popup_content9 = '<h2>1930: Elias Fleming & Harriet Curtis</h2>';
+                    popup_content9 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming/elias-fleming">Elias Fleming</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming/harriet-curtis">Harriet Curtis</a>';
+                    popup_content9 += '<h3> Residence: Owned 749 Fleming Street, Hobart, IN, which was worth $1500.</h3>'
+                    popup_content9 += '<h3> There is a radioset in this household! </h3>'
+                    popup_content9 += '<p>Elias Fleming (paternal great-great-grandfather): Head of the household, 70 years old, born in Indiana. Employed as a carpenter. </p>';
+                    popup_content9 += '<p>Harriet Curtis-Fleming (paternal great-great-grandmother): Wife to Elias,70 years old, born in Indiana</p>';
+                var popup9 = new mapboxgl.Popup()
+                    .setHTML(popup_content9)
+                var marker9 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(thirty_flyLocations[1]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup9) //add the popup to the marker 
+                    .addTo(thirty_map);
+            
+                var popup_content10 = '<h2>1930: Lawrence Mulligan & Pearl Fleming</h2>';
+                    popup_content10 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/lawrence-emerson-mulligan">Lawrence Mulligan</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming">Pearl Fleming</a>';
+                    popup_content10 += '<h3> Residence: Owned a home on Fleming Street in Hobart, IN, which was worth $500.</h3>'
+                    popup_content10 += '<h3> There is not a radioset in this household. </h3>'
+                    popup_content10 += '<p>Lawrence Mulligan (paternal great-grandfather): Head of the household. 41 years old, born in Pennsylvania. Employed as a pipefitter for a steel mill. </p>';
+                    popup_content10 += '<p>Pearl Fleming-Mulligan (paternal great-grandmother): wife of Lawrence, 32 years old, born in Indiana. </p>';
+                    popup_content10 += '<p>Lawrence and Pearl had 7 children living in their household in 1930: Dorothy (12), Ruth (11), Veara (10), James (7), Betty (5), and twins Harry and Mary (1 year and 3 months old). They were all born in Indiana.</p>'
+                var popup10 = new mapboxgl.Popup()
+                    .setHTML(popup_content10)
+                var marker10 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(thirty_flyLocations[2]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup10) //add the popup to the marker 
+                    .addTo(thirty_map);
+            
+                var popup_content11 = '<h2>1930: Ira Larson & Amanda Dahlen</h2>';
+                    popup_content11 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/ira-kenneth-larson/ira-larson">Ira Sr. Larson</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/ira-kenneth-larson">Ira Jr. Larson</a>';
+                    popup_content11 += '<img class="popupImage" alt = "Amanda Dahlen" src="photos/amanda.png">'
+                    popup_content11 += '<p class = center>Amanda Dahlen-Larson</p>'
+                    popup_content11 += '<h3> Residence: Renting 1716 N Long Avenue, Chicago, IL for $50 a month. </h3>'
+                    popup_content11 += '<h3> There is a radioset in this household! </h3>'
+                    popup_content11 += '<p>Ira Larson (maternal great-great-grandfather): "Head of the house", 47 years old, born in Wisconsin. His father was born in  Wisconsin, and his mother was born in Canada. Ira was employed as a steel erector for a steel construction company. </p>';
+                    popup_content11 += '<p>Amanda Dahlen-Larson (maternal great-great-grandmother): wife to Ira, 42 years old, born in Minnesota. Her parents were both born in Norway. </p>';
+                    popup_content11 += '<p>Ira and Amanda had two children: Ira Jr (17 years old and born in Iwsconsin), and Ralph (14 years old and born in Minnesota). </p>';
+                var popup11 = new mapboxgl.Popup()
+                    .setHTML(popup_content11)
+                var marker11 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(thirty_flyLocations[3]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup11) //add the popup to the marker 
+                    .addTo(thirty_map);
+            
+                var popup_content12 = '<h2>1930: Frank Kramer</h2>';
+                    popup_content12 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/elsie-gottman/jeanette-f-kramer">Jeanette Kramer</a>';
+                    popup_content12 += '<h3> Residence: Owned 3654 Lamon Avenue, Chicago, IL, which was worth $6,500. </h3>'
+                    popup_content12 += '<h3> There is a radioset in this household! </h3>'
+                    popup_content12 += '<p>Frank Kramer (maternal great-great-great-grandfather): "Head of the house", 69 years old, born in Germany. He spoke German before coming to the US, immigrated in 1883, and was naturalized at the time of this census. </p>';
+                    popup_content12 += '<p>Living in Franks home was his adult daughter Jeanette Kramer-Gottman (40 years old, and born in Illinois), and 3 of her children: Jeanette (17), Elsie (16), and Theodore Jr. (12).</p>';
+                var popup12 = new mapboxgl.Popup()
+                    .setHTML(popup_content12)
+                var marker12 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(thirty_flyLocations[4]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup12) //add the popup to the marker 
+                    .addTo(thirty_map);
+            
+                var popup_content13 = '<h2>1930: Theodore & Mildred Gottman</h2>';
+                    popup_content13 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/elsie-gottman/theodore-gottman">Theodore Gottman</a>';
+                    popup_content13 += '<h3> Residence: Owned 4830 Kildare Avenue, Chicago, IL, which was worth $8,500. </h3>'
+                    popup_content13 += '<h3> There is a radioset in this household! </h3>'
+                    popup_content13 += '<p> Theodore Gottman (maternal great-great grandfather): 41 years old, born in Illinois. Employed as a proprietor in the candy industry. </p>';
+                    popup_content13 += '<p> Mildred Gottman: Second Wife of Theodore Jr., 34 years old, born in Wisconsin.</p>';
+                var popup13 = new mapboxgl.Popup()
+                    .setHTML(popup_content13)
+                var marker13 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(thirty_flyLocations[5]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup13) //add the popup to the marker 
+                    .addTo(thirty_map);
+            
+                var popup_content14 = '<h2>1930: William Pemberton & Elizabeth Hampton</h2>';
+                    popup_content14 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton/william-samuel-pemberton">William Pemberton</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton/elizabeth-reed-hampton">Elizabeth Hampton</a>';
+                    popup_content14 += '<h3> Residence: Owned 59 Pendleton Road, Banning, CA, which was worth $6,500 </h3>'
+                    popup_content14 += '<h3> There is a radioset in this household! </h3>'
+                    popup_content14 += '<p> William Pemberton (maternal great-great grandfather): 71 years old, Born in Missouri. Retired. </p>';
+                    popup_content14 += '<p> Elizabeth Hampton-Pemberton (maternal great-great grandmother): Wife to William, 65 years old, born in Missouri.</p>';
+                    popup_content14 += '<img class="popupImage" alt = "Elizabeth Hampton-Pemberton" src="photos/elizabeth.png">'
+                    popup_content14 += '<p class = center>Elizabeth Hampton-Pemberton</p>'
+                var popup14 = new mapboxgl.Popup()
+                    .setHTML(popup_content14)
+                var marker14 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(thirty_flyLocations[6]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup14) //add the popup to the marker 
+                    .addTo(thirty_map);
+            
+        //MAP 3: 1920s FAMILY JAVASCRIPT 
+            // 4.1: marker and fly-to variables for the 1920s map. 
+                var twenty_clickCounter = 1;
+                var twenty_flyLocations = [[-87.25589,41.52721],[-87.25695,41.52203], [-87.64689113,41.92384965], [-87.66330113,41.96483071], [-91.30597,45.79679], [-113.99309,46.86981], [-122.41843,37.77938], [-157.8079994, 21.30084745]];
+
+                // 4.2 Then initialize the 1920s map
+                var twenty_map = new mapboxgl.Map({
+                        container: 'twenty_map',
+                        style: 'mapbox://styles/malializzabeth/clhi5rdgq00if01q16u3rb0wj',
+                        center: [-99.27162960230424, 39.97230387887807],
+                        zoom: 2, // starting zoom
+                        minZoom: 2, // pick your own
+                        // don't allow user to zoom in more than 15 
+                        maxZoom: 15,
+                    });
+                // Add the fly button
+                document.getElementById('twentyfly').addEventListener('click', function () {
+                    console.log("flying to " + twenty_flyLocations[twenty_clickCounter])
+                    twenty_map.flyTo({
+                        center: twenty_flyLocations[twenty_clickCounter],
+                        zoom: 14 
+                    });
+                    twenty_clickCounter = twenty_clickCounter +1;
+                    if (twenty_clickCounter > twenty_flyLocations.length-1) twenty_clickCounter = 0;
+                }); 
+            
+                   // Add zoom controls 
+                   twenty_map.addControl(new mapboxgl.NavigationControl());
+                   // Disable drag and zoom handlers.
+                   twenty_map.scrollZoom.disable();
+                   twenty_map.boxZoom.disable();
+                   twenty_map.dragRotate.disable();
+                   twenty_map.doubleClickZoom.disable();
+                   twenty_map.touchZoomRotate.disable();
+                   twenty_map.touchZoomRotate.disableRotation();
+            
+                var popup_content15 = '<h2>1920: Lawrence Mulligan & Pearl Fleming</h2>';
+                    popup_content15 += 'On Mullig-an-cestry: <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/lawrence-emerson-mulligan">Lawrence Mulligan</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming">Pearl Fleming</a>';
+                    popup_content15 += '<h3> Residence: Renting on Water Street, Hobart, IN. </h3>'
+                    popup_content15 += '<p> Lawrence Mulligan (paternal great grandfather): "Head of the household, 31 years old. He was born in Pennsylvania, his father was born in Ireland, and his mother was born in Pennsylvania. Lawrence was employed at a  steel mill.</p>';
+                    popup_content15 += '<p> Pearl Fleming-Mulligan (paternal great grandmother): wife to Lawrence, 21 years old. </p>';
+                    popup_content15 += '<p> Lawrence and Pearl had 2 children in 1920: Dorothy (1 year and 10 months old), and Ruth (7 months old). </p>';
+                var popup15 = new mapboxgl.Popup()
+                    .setHTML(popup_content15)
+                var marker15 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(twenty_flyLocations[0]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup15) //add the popup to the marker 
+                    .addTo(twenty_map);
+            
+                var popup_content16 = '<h2>1920: Elias Fleming & Harriet Curtis</h2>';
+                    popup_content16 += '<h3> Residence: Owned a home on Fleming Street, Hobart, IN. </h3>'
+                    popup_content16 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming/elias-fleming">Elias Fleming</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming/harriet-curtis">Harriet Curtis</a>';
+                    popup_content16 += '<p> Elias Fleming (paternal great-great grandfather): "Head of the house", 60 years old. He, and both of his parents were born in Indiana. He was employed as a carpenter </p>';
+                    popup_content16 += '<p> Harriet Curtis-Fleming (paternal great-great grandmother): wife to Elias, 59 years old. She, and her father were born in Indiana, and her mother was born in Canada.</p>';
+                    popup_content30 += '<p> Also living with Elias and Harriet was their adult son, John, who was 32 years old. Like his father, John was employed as a carpenter. </p>';
+                var popup16 = new mapboxgl.Popup()
+                    .setHTML(popup_content16)
+                var marker16 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(twenty_flyLocations[1]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup16) //add the popup to the marker 
+                    .addTo(twenty_map);
+            
+                var popup_content17 = '<h2>1920: Frank & Johanna Kramer</h2>';
+                    popup_content17 += '<h3> Residence: Owned 2312 Lincoln Avenue, Chicago, IL  </h3>'
+                    popup_content17 += '<p> Frank Kramer (great-great-great grandfather): "Head of the house", 59 years old. He was employed as a printer at a shop he owned. He immigrated from Germany in 1883 and become a naturalized citizen in 1888. </p>';
+                    popup_content17 += '<p> Johanna Kramer (great-great-great grandmother): wife to Frank, 58 years old. She also immigrated from Germany in 1883 and became a naturalized citizen in 1888.  </p>';
+                    popup_content25 += '<p> Also living with Frank and Johanna were two of their adult children: Harry (24 years old, and employed at the printshop), and Jeanette, (30 years old). </p>';
+                var popup17 = new mapboxgl.Popup()
+                    .setHTML(popup_content17)
+                var marker17 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(twenty_flyLocations[2]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup17) //add the popup to the marker 
+                    .addTo(twenty_map);
+            
+                var popup_content18 = '<h2>1920: Theodore Gottman & Adelheide Fink</h2>';
+                    popup_content18 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/elsie-gottman/theodore-gottman/frederich-theodore-gottman">Theodore Sr. Gottman</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/elsie-gottman/theodore-gottman">Theodore Jr. Gottman</a>, <a href= "https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/elsie-gottman">Elsie Gottman</a>';
+                    popup_content18 += '<h3> Residence: Owned 4547 Beacon Street, Chicago, IL  </h3>'
+                    popup_content18 += '<p> Theodore Sr. Gottman (great-great-great grandfather): "Head of the house", 56 years old. He and both of his parents were born in Germany.  He was employed as a confectioner. </p>';
+                    popup_content18 += '<p> Adelheide Fink-Gottman (great-great-great grandmother): Wife to Theodore Sr., 56 years old. She was born in Illinois, but both of her parets were born in Germany. </p>';
+                    popup_content18 += "<p> Six of Theodore Sr. and Adelheide's adult children, Theodore Jr. (31), Adelheide Jr. (28), Fred (25), Meta (23), Elsa (23), and Ernest (19) were living with them. They were all employed in the confectionary industry, likely working with their father. Also living with them were 2 of Theodore's children: Jeanette Jr. (6), and Elsie (5). </p>";
+                var popup18 = new mapboxgl.Popup()
+                    .setHTML(popup_content18)
+                var marker18 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(twenty_flyLocations[3]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup18) //add the popup to the marker 
+                    .addTo(twenty_map);
+            
+                var popup_content19 = '<h2>1920: Ira Sr. Larson & Amanda Dahlen</h2>';
+                    popup_content19 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/ira-kenneth-larson/ira-larson">Ira Sr. Larson</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/ira-kenneth-larson">Ira Jr. Larson</a>';
+                    popup_content19 += '<h3> Residence: Owned a home in Couderay, WI </h3>'
+                    popup_content19 += '<p> Ira Sr. Larson (maternal great-great grandfather): "Head of the house", 37 years old. He was born in Wisconsin, his father was born in Wisconsin, and his mother was born in Canada. His mother tongue was Norwegian, and he was employed as a farmer. </p>';
+                    popup_content19 += '<p> Amanda Dahlen-Larson (maternal great-great grandmother): Wife to Ira Sr., 31 years old. She was born in minnesota, and her father and mother Ia born in Norway</p>';
+                    popup_content19 += '<p> Ira Sr. and Amanda had 2 children: Ira Jr (11 years old, born in Wisconsin), and Ralph (8 months old, born in Minnesota). </p>';
+                    popup_content19 += '<img class="popupImage" alt = "Ira Sr. Larson & Amanda Dahlen-Larson" src="photos/ira_amanda.png">'
+                    popup_content19 += '<p class = center>Ira Sr. Larson & Amanda Dahlen-Larson</p>'
+                var popup19 = new mapboxgl.Popup()
+                    .setHTML(popup_content19)
+                var marker19 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(twenty_flyLocations[4]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup19) //add the popup to the marker 
+                    .addTo(twenty_map);
+            
+                var popup_content20 = '<h2>1920: Mildred Yokom</h2>';
+                    popup_content20 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/mildred-helena-yokom">Mildred Yokom</a>';
+                    popup_content20 += '<h3> Residence: Lodging at 238 E Front Street, Missoula City, MT </h3>'
+                    popup_content20 += '<p> Mildred Yokom (maternal great-grandmother): She was one of three lodgers living with a Frank and Anna Therriault, who were French-Canadian immigrants. She was born in Washington, her father was born in New York, and her mother as born in Michigan. She was employed as a cashier.  </p>';
+                    popup_content20 += '<img class="popupImage" alt = "Mildred Yokom" src="photos/mildred.png">'
+                    popup_content20 += '<p class = center>Mildred Yokom</p>'
+                var popup20 = new mapboxgl.Popup()
+                    .setHTML(popup_content20)
+                var marker20 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(twenty_flyLocations[5]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup20) //add the popup to the marker 
+                    .addTo(twenty_map);
+            
+                var popup_content21 = '<h2>1920: William Pemberton & Elizabeth Hampton</h2>';
+                    popup_content21 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton/william-samuel-pemberton">William Pemberton</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton/elizabeth-reed-hampton">Elizabeth Hampton</a>';
+                    popup_content21 += '<h3> Residence: Owned a home in District 26, San Francisco, CA </h3>'
+                    popup_content21 += '<p> William Pemberton (maternal great-great-grandfather): "head of the house", 61 years old. He was born in Missouri, and both of his parents were born in Kentucky. He was employed as a real estate salesman. </p>';
+                    popup_content21 += '<p> Elizabeth Hampton-Pemberton (maternal great-great grandmother): wife to William, 56 years old. She was born in Missouri, her father as born in Virginia, and her mother was born in Kentucky. </p>';
+                    popup_content21 += '<p> Also living with William and Elizabeth was their adult daughter, Mary, who was 25 years old, and was born in California. </p>';
+                var popup21 = new mapboxgl.Popup()
+                    .setHTML(popup_content21)
+                var marker21 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(twenty_flyLocations[6]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup21) //add the popup to the marker 
+                    .addTo(twenty_map);
+            
+                var popup_content22 = '<h2>1920: Cyril Pemberton & Una Craig</h2>';
+                    popup_content22 += 'On Mullig-an-cestry: <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton">Cyril Pemberton</a>';
+                    popup_content22 += '<h3> Residence: Rented in Honolulu, HI </h3>'
+                    popup_content22 += '<p> Cyril Pemberton (maternal great-grandfather): "Head of the house", 35 years old. He was born in California, and both of his parents were born in Missouri. He was employed as an entomologist in the sugar planters industry. </p>';
+                    popup_content22 += '<p> Una Craig-Pemberton: First wife to Cyril, (second wife is my great-grandmother) 29 years old. She was born in California, and both of her parents were born in Missouri. She was employed as a secretary. </p>';
+                    popup_content22 += '<p> Cyril and Una had one daughter, Virginia, who was 6 years old. She was born in Hawaii. </p>';
+                var popup22 = new mapboxgl.Popup()
+                    .setHTML(popup_content22)
+                var marker22 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(twenty_flyLocations[7]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup22) //add the popup to the marker 
+                    .addTo(twenty_map);
+            
+            
+        //MAP 4: 1910s FAMILY JAVASCRIPT 
+            // 4.1: marker and fly-to variables for the 1920s map. 
+                var ten_clickCounter = 1;
+                var ten_flyLocations = [[-79.72422,39.90203],[-87.25589,41.52721], [-87.64689113,41.92384965], [-87.66347313,41.964913349710024], [-122.15742,37.44305], [-114.87984,46.87984]];
+                // 4.2 Then initialize the 1920s map
+                var ten_map = new mapboxgl.Map({
+                        container: 'ten_map',
+                        style: 'mapbox://styles/malializzabeth/clhi5rdgq00if01q16u3rb0wj',
+                        center: [-99.27162960230424, 39.97230387887807],
+                        zoom: 3, // starting zoom 
+                        minZoom: 2, // pick your own
+                        // don't allow user to zoom in more than 15 
+                        maxZoom: 15,
+                    });
+                // Add the fly button 
+                document.getElementById('tenfly').addEventListener('click', function () {
+                    console.log("flying to " + ten_flyLocations[ten_clickCounter])
+                    ten_map.flyTo({
+                        center: ten_flyLocations[ten_clickCounter],
+                        zoom: 14
+                    });
+                    ten_clickCounter = ten_clickCounter +1;
+                    if (ten_clickCounter > ten_flyLocations.length-1) ten_clickCounter = 0;
+                }); 
+            
+                   // Add zoom controls 
+                   ten_map.addControl(new mapboxgl.NavigationControl());
+                   // Disable drag and zoom handlers.
+                   ten_map.scrollZoom.disable();
+                   ten_map.boxZoom.disable();
+                   ten_map.dragRotate.disable();
+                   ten_map.doubleClickZoom.disable();
+                   ten_map.touchZoomRotate.disable();
+                   ten_map.touchZoomRotate.disableRotation();
+            
+                var popup_content23 = '<h2>1910 :Peter Mulligan & Mary Chain</h2>';
+                    popup_content23 += 'On Mullig-an-cestry: <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/lawrence-emerson-mulligan/peter-mulligan">Peter Mulligan</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/lawrence-emerson-mulligan/mary-elizabeth-chain">Mary Chain</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/lawrence-emerson-mulligan">Lawrence Mulligan</a>';
+                    popup_content23 += '<h3> Residence: Owned a home in Uniontown, PA </h3>'
+                    popup_content23 += '<p> Peter Mulligan (great-great grandfather): "Head of the house", 59 years old. He and both of his parents were born in Ireland. Peter immigrated to the US in 1868 and was naturalized at the time of this census. His employment title was "Laborer" </p>';
+                    popup_content23 += '<p> Mary Chain (great-great grandmother): Wife to Peter, 59 years old. She and both her mother and father were born in Pennsylvania. </p>';
+                    popup_content23 += '<p>Mary and Peter were parents to 12 children, 7 of which were still alive in 1910. Four of their children were still living with them: Lawrence (21 years old, employed as a laborer for a railroad), Peter Jr. (19 years old, employed as a teacher at a public school), Hugh (16 years old, employed as a salesman at a department store), and Thomas (11 years old). </p>';
+                var popup23 = new mapboxgl.Popup()
+                    .setHTML(popup_content23)
+                var marker23 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(ten_flyLocations[0]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup23) //add the popup to the marker 
+                    .addTo(ten_map);
+            
+                var popup_content24 = '<h2>1910: Elias Fleming & Harriet Curtis-Fleming</h2>';
+                    popup_content24 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming/elias-fleming">Elias Fleming</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming/harriet-curtis">Harriet Curtis</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming">Pearl Fleming</a>';
+                    popup_content24 += '<h3> Residence: Rented on Water Street, Hobart, IN </h3>'
+                    popup_content24 += '<p> Elias Fleming (great-great grandfather): "head of the house", 50 years old. He and his parents were all born in Indiana. He was employed as a carpenter. </p>';
+                    popup_content24 += '<p> Harriet Curtis-Fleming (great-great grandmother): Wife of Elias, 50 years old. She and her father were born in Indiana, and her mother was born in Canada. </p>';
+                    popup_content24 += "<p> Elias and Harriet were parents to 10 children, all ofwhich were still alive in 1910. 5 of their children were still living in their household: Melvin (19), Blanche (18), Clarence (16), Harry (13), and Pearl (12). Pearl is my father's paternal grandmother.</p>";
+                var popup24 = new mapboxgl.Popup()
+                    .setHTML(popup_content24)
+                var marker24 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(ten_flyLocations[1]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup24) //add the popup to the marker 
+                    .addTo(ten_map);
+            
+                var popup_content25 = '<h2>1910: Frank & Johanna Kramer</h2>';
+                    popup_content25 += '<h3> Residence: Owned 2312 Lincoln Avenue, Chicago IL, </h3>'
+                    popup_content25 += '<p> Frank Kramer (great-great-great grandfather): "head of the house," 49 years old. He and his parents were all born in Germany. He immigrated in 1883, and was naturalized. He was employed at a printing shop.  </p>';
+                    popup_content25 += '<p> Johanna Kramer (great-great-great grandmother): Wife to Frank, 48 years old. Her and her parents were all born in Germany. She immigrated in 1883. </p>';
+                    popup_content25 += "<p> Frank and Johanna were parents to 5 children, 3 of which were still alive in 1910: Frank jr. (25 years old, and employed as a civil engineer), Betty (22 years old, employed at a candy factory), Jenny (20 years old), and Harry (14 years old). All of their children were born in Illinois. Also living with them was Frank and Johanna's nephew Albert, who was born in New Jersey.</p>";
+                var popup25 = new mapboxgl.Popup()
+                    .setHTML(popup_content25)
+                var marker25 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(ten_flyLocations[2]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup25) //add the popup to the marker 
+                    .addTo(ten_map);
+            
+                var popup_content26 = '<h2>1910: Theodore Gottman Sr & Adelheide Fink-Gottman</h2>';
+                    popup_content26 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/elsie-gottman/theodore-gottman/frederich-theodore-gottman">Theodore Sr. Gottman</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/elsie-gottman/theodore-gottman">Theodore Jr. Gottman</a>';
+                    popup_content26 += '<h3> Residence: rented 4545 Beacon Street, Chicago IL, </h3>'
+                    popup_content26 += '<p> Theodore Gottman (great-great-great grandfather): "Head of the house", 48 years old. He and his parents were all born in Germany. Theodore Sr. immigrated in 1881, and was naturalized. His job title was "confectioner" for a confectionary. </p>';
+                    popup_content26 += '<p> Adelheide Fink-Gottman (great-great-great grandmother): Wife of Theodore Sr., 47 years old. She was born in Illinois, but both of her parents were born in Germany. </p>';
+                    popup_content26 += '<p> Theodore Sr. and Adelheide were parents to 6 children, all of which were still alive in 1910: Theodore Jr.(22 years old, employed as a confectioner), Adelheide Jr. (20), Fred (16), twins Meta and Elsa (13), and Ernest (9). All of their children were born in Illinois. </p>';
+                var popup26 = new mapboxgl.Popup()
+                    .setHTML(popup_content26)
+                var marker26 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(ten_flyLocations[3]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup26) //add the popup to the marker 
+                    .addTo(ten_map);
+            
+                var popup_content27 = '<h2>1910: William Pemberton & Elizabeth Hampton-Pemberton</h2>';
+                    popup_content27 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton/william-samuel-pemberton">William Pemberton</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton/elizabeth-reed-hampton">Elizabeth Hampton</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton">Cyril Pemberton</a>';
+                    popup_content27 += '<h3> Residence: Rented 846 Bryant Street, Palo Alto, CA </h3>'
+                    popup_content27 += '<p> William Pemberton (great-great grandfather): "Head of the house", 51 years old, and was born in Missouri. His father and mother were both born in Kentucky. He was employed as a real estate agent, </p>';
+                    popup_content27 += '<p> Elizabeth Hampton-Pemberton (great-great grandmother): Wife of William, 46 years old. She was born in Missouri, her father was born in Virginia, and her mother was born in Kentucky.</p>';
+                    popup_content27 += '<p> William and Elizabeth were parents to 3 children, all 3 of which were still alive in 1910: John R. (25), Cyril E. (23), and Mary L (15).</p?';
+                var popup27 = new mapboxgl.Popup()
+                    .setHTML(popup_content27)
+                var marker27 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(ten_flyLocations[4]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup27) //add the popup to the marker 
+                    .addTo(ten_map);
+            
+                var popup_content28 = '<h2>1910: Peter Johnson & Karen Olson-Johnson</h2>';
+                    popup_content28 += '<img class="popupImage" alt = "Karen Olson" src="photos/karen.png">'
+                    popup_content28 += '<p class = center>Karen Olson-Johnson</p>'
+                    popup_content28 += '<h3> Residence: 1303 Sherwood Street, Missoula MT </h3>'
+                    popup_content28 += '<p> Peter Johnson (great-great-great grandfather): "Head of the house", 66 years old. He and his parents were born in Denmark,  he immigrated to the US in 1866, and he was naturalized. He was employed as a shoemaker, and was able to read and write. </p>';
+                    popup_content28 += '<p> Karen Olson-Johnson (great-great-great grandmother): Wife of Peter, 71 years old. Her and her parents were born in Norway, and she immigrated in 1869. She was able to read and write.  </p>';
+                    popup_content28 += '<p> Peter and Karen were parents to 3 children, all 3 of which were still alive in 1910. One of their children, Harry, still lived with them. He was 37 years old, born in Michigan, and was employed as a shoemaker like his father was. </p>';
+                var popup28 = new mapboxgl.Popup()
+                    .setHTML(popup_content28)
+                var marker28 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(ten_flyLocations[5]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup28) //add the popup to the marker 
+                    .addTo(ten_map);
+            
+            
+        //MAP 5: 1900s FAMILY JAVASCRIPT 
+            // 4.1: marker and fly-to variables for the 1920s map. 
+                var hundred_clickCounter = 1;
+                var hundred_flyLocations = [[-79.71902,39.89821],[-87.46432,41.4632], [-87.06318,41.4678], [-87.66853563,41.92040968], [-87.79481418,42.01785279], [-118.24235,34.05334], [-122.33421,47.61185]];
+                // 4.2 Then initialize the 1920s map
+                var hundred_map = new mapboxgl.Map({
+                        container: 'hundred_map',
+                        style: 'mapbox://styles/malializzabeth/clhi5rdgq00if01q16u3rb0wj',
+                        center: [-99.27162960230424, 39.97230387887807],
+                        zoom: 3 // starting zoom 
+                    });
+                // Add the fly button
+                document.getElementById('hundredfly').addEventListener('click', function () {
+                    console.log("flying to " + hundred_flyLocations[hundred_clickCounter])
+                    hundred_map.flyTo({
+                        center: hundred_flyLocations[hundred_clickCounter],
+                        zoom: 14
+                    });
+
+                    hundred_clickCounter = hundred_clickCounter +1;
+                    if (hundred_clickCounter > hundred_flyLocations.length-1) hundred_clickCounter = 0;
+                }); 
+            
+                   // Add zoom controls 
+                   hundred_map.addControl(new mapboxgl.NavigationControl());
+                   // Disable drag and zoom handlers.
+                   hundred_map.scrollZoom.disable();
+                   hundred_map.boxZoom.disable();
+                   hundred_map.dragRotate.disable();
+                   hundred_map.doubleClickZoom.disable();
+                   hundred_map.touchZoomRotate.disable();
+                   hundred_map.touchZoomRotate.disableRotation();
+            
+                var popup_content29 = '<h2>1900: Peter Mulligan & Mary Chain</h2>';
+                    popup_content29 += 'On Mullig-an-cestry: <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/lawrence-emerson-mulligan/peter-mulligan">Peter Mulligan</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/lawrence-emerson-mulligan/mary-elizabeth-chain">Mary Chain</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/lawrence-emerson-mulligan">Lawrence Mulligan</a>';
+                    popup_content29 += '<h3> Residence: Rented 28 Wilson Avenue Uniontown, PA  </h3>'
+                    popup_content29 += '<p> Peter Mulligan (great-great grandfather): "head of the house", born June 1855, 44 years old. He, and both of his parents were born in Ireland. His employment title was "day laborer". </p>';
+                    popup_content29 += '<p> Mary Chain (great-great grandmother): Wife to Peter, born February 1852, 48 years old. She and both of her parents were born in Pennsylvania. </p>';
+                    popup_content29 += "<p> Peter and Mary were parents to 12 children, 8 of which were still alive in 1900: Franklin (20), Mitchell (17), James (13), Lawrence (12), Peter Jr. (9), Hugh (6), and Thomas (8 months). Lawrence is my father's paternal grandfather. </p>";
+                var popup29 = new mapboxgl.Popup()
+                    .setHTML(popup_content29)
+                var marker29 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(hundred_flyLocations[0]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup29) //add the popup to the marker 
+                    .addTo(hundred_map);
+            
+                var popup_content30 = '<h2>1900: Elias Fleming & Harriet Curtis-Fleming</h2>';
+                    popup_content30 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming/elias-fleming">Elias Fleming</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming/harriet-curtis">Harriet Curtis</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming">Pearl Fleming</a>';
+                    popup_content30 += '<h3> Rented at 15 Factory Street, Valparaiso, IN </h3>'
+                    popup_content30 += '<p> Elias Fleming (great-great grandfather): "head of the house", born December 1859, 40 years old. He, and both of his parents were born in Indiana. His employment title was "day laborer". </p>';
+                    popup_content30 += '<p> Harriet Curtis-Fleming (great-great grandmother): Wife to Elias, born July 1860, 40 years old. She and her father were born in Indiana and her mother was born in Canada. </p>';
+                    popup_content30 += "<p> Elias and Harriet were parents to 10 children, all of which were still alive in 1900: Rhoda (18), Fred (15), Milroy (14), John (11), Melvin (9), Blanche (8), Clarence (6), Harry (3), and Pearl (2). Pearl Fleming is my father's paternal grandmother.</p>";
+                var popup30 = new mapboxgl.Popup()
+                    .setHTML(popup_content30)
+                var marker30 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(hundred_flyLocations[1]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup30) //add the popup to the marker 
+                    .addTo(hundred_map);
+                
+                var popup_content31 = '<h2>1900: Russel Curtis & Lydia Dibble-Curtis</h2>';
+                    popup_content31 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming/harriet-curtis/russel-calvin-curtis">Russel Curtis</a>, <a href="https://sites.google.com/view/mullig-an-cestry/paternal-lineage/donald-lee-mulligan/pearl-olive-fleming/harriet-curtis/lydia-dibble">Lydia Dibble</a>';
+                    popup_content31 += '<h3> Rented in Porter County, IN </h3>'
+                    popup_content31 += '<p> Russel Curtis (great-great-great grandfather): "Head of the house", born February 1827, 79 years old. He was born in Indiana, but both of his parents were born in New York. </p>';
+                    popup_content31 += '<p> Lydia Dibble-Curtis (great-great-great grandmother): Wife to Russel, born March 1836, 64 years old. She was the mother 8 children, of which only 3 were still alive, and none of which were living in their household. She was born in Canada, and both of her parents were born in New York. </p>';
+                var popup31 = new mapboxgl.Popup()
+                    .setHTML(popup_content31)
+                var marker31 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(hundred_flyLocations[2]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup31) //add the popup to the marker 
+                    .addTo(hundred_map);
+            
+                var popup_content32 = '<h2>1900: Frank Kramer & Johanna Kramer</h2>';
+                    popup_content32 += '<h3> 2088 Ashland Avenue, Chicago IL </h3>'
+                    popup_content32 += '<p> Frank Kramer (great-great-great grandfather): "Head of the house", born October 1860, 39 years old. He, and both of his parents were born in Germany. He immigrated in 1882, and was naturalized at the time of this census. Frank was employed as a shoe delaer. </p>';
+                    popup_content32 += '<p> Johanna Kramer (great-great-great grandmother): wife to Frank, born June 1861, 38 years old. She, and both of her parents were born in Germany. </p>';
+                    popup_content32 += '<p> Frank and Johanna were parents to 5 children, of which 4 were still alive in 1900: Frank Jr. (14), Bethie (13), Jennie(10), and Harry (4). Jennie is my great-great grandmother.</p>';
+                var popup32 = new mapboxgl.Popup()
+                    .setHTML(popup_content32)
+                var marker32 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(hundred_flyLocations[3]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup32) //add the popup to the marker 
+                    .addTo(hundred_map);
+            
+                var popup_content33 = '<h2>1900: Theodore Sr. Gottman & Adelheide Fink-Gottman</h2>';
+                    popup_content33 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/elsie-gottman/theodore-gottman/frederich-theodore-gottman">Theodore Sr. Gottman</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/john-kenneth-larson/elsie-gottman/theodore-gottman">Theodore Jr. Gottman</a>';
+                    popup_content33 += '<h3> Owned a home in Niles, IL. This home was considered to be on a farm (farm schedule #423)</h3>'
+                    popup_content33 += '<p> Theodore Sr. Gottman (great-great-great grandfather): "head of the house", born January 1862, 38 years old. He, and both of his parents were born in Germany. Theodore Immigrated in 1881, and was naturalized at the time of this census.</p>';
+                    popup_content33 += '<p> Adelheide Fink-Gottman (great-great-great grandmother): Wife to Theodore Sr., born February 1863, 37 years old. She was the mother of 7 children, of which 5 were stil alive in 1900. She was born in Illinois, but both of her parents were born in Germany.</p>';
+                    popup_content33 += '<p> Theodore Sr. and Adelheide had 7 children together, 5 of which were still allive at the time of this census. All 5 children lived in their household: Theodore Jr. (12), Adelheid Jr. (10), Fred (6), and twins Elsa and Meta (3). Theodore Jr. is my great-great grandfather.</p>';
+                var popup33 = new mapboxgl.Popup()
+                    .setHTML(popup_content33)
+                var marker33 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(hundred_flyLocations[4]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup33) //add the popup to the marker 
+                    .addTo(hundred_map);
+            
+                var popup_content34 = '<h2>1900: William Pemberton & Elizabeth Hampton-Pemberton</h2>';
+                    popup_content34 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton/william-samuel-pemberton">William Pemberton</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton/elizabeth-reed-hampton">Elizabeth Hampton</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/cyril-eugene-pemberton">Cyril Pemberton</a>';
+                    popup_content34 += '<h3> Residence: Owned a home at 2550 Pies St, Los Angeles, CA </h3>'
+                    popup_content34 += '<p> William Pemberton (maternal great-great grandfather): "head of the house", born November 1858, 42 years old. He was born in Missouri, his father was born in Virginia, and his mother was born in Kentucky. William was employed as a bookkeeper.</p>';
+                    popup_content34 += '<p> Elizabeth Hampton-Pemberton (maternal great-great grandmother): Wife to William, born October 1863, 37 years old. She was born in Missouri, her father was born in Virginia, and her mother was born in Kentucky. </p>';
+                    popup_content34 += '<p> William and Elizabeth were parents to three children, John R. (16), Cyril E. (14), and Mary L. (6), all who were still living. Each child was born in California. John R. Pemberton: son of William and Elizabeth, born September 1884, 16 years old. Born in California.</p>'
+
+                var popup34 = new mapboxgl.Popup()
+                    .setHTML(popup_content34)
+                var marker34 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(hundred_flyLocations[5]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup34) //add the popup to the marker 
+                    .addTo(hundred_map);
+            
+                var popup_content35 = '<h2>1900: Roscoe Yokom & Mary Johnson-Yokom</h2>';
+                    popup_content35 += 'On Mullig-an-cestry:, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/mildred-helena-yokom/roscoe-dean-yokom">Roscoe Yokom</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/mildred-helena-yokom/marie-jennie-johnson">Mary Johnson</a>, <a href="https://sites.google.com/view/mullig-an-cestry/maternal-lineage/mary-elizabeth-pemberton/mildred-helena-yokom">Mildred Yokom</a>';
+                    popup_content35 += '<h3> Residence: Rented at 1511 Seventh Avenue, Seattle, WA </h3>'
+                    popup_content35 += '<p> Roscoe D. Yokom (maternal great-great grandfather): "head of the house", born August 1862, 37 years old. Roscoe and both of his parents were born in New York. He was employed as a locomotive Engineer.</p>';
+                    popup_content35 += '<p> Mary Jennie Johnson-Yokom (maternal great-great grandmother): Wife to Roscoe, born February 1875, 25 years old. Mary was born in Michigan, her father was born in Denmark, and her mother was born in Norway. She was the mother of one child, Mildred, who was 2 years old and born in June of 1898.</p>';
+                    popup_content35 += '<p> Roscoe and Mary had one child together, Mildred, who is my maternal great-grandmother. She was 2 years old at the time of this census and was born in June of 1898.</p>';
+                    popup_content35 += '<img class="popupImage" alt = "Roscoe, Mary and Mildred" src="photos/roscoe_mildred.png">'
+                    popup_content35 += '<p class = center>Roscoe, Mildred, and Mary</p>'
+                var popup35 = new mapboxgl.Popup()
+                    .setHTML(popup_content35)
+                var marker35 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(hundred_flyLocations[6]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup35) //add the popup to the marker 
+                    .addTo(hundred_map)
+            
+            
+        // MAP 6: MATERNAL VS PATERNAL
+                var mat_pat_map = new mapboxgl.Map({
+                        container: 'mat_pat_map',
+                        style: 'mapbox://styles/malializzabeth/clh9h3iht00bq01r685rj2cze',
+                        center: [-101.8014695375948, 40.84356066015116],
+                        zoom: 2 // starting zoom
+                    });
+            
+                // Write a function to enable legend interaction 
+                var state = { panelOpen: true };
+              
+                   mat_pat_map.addControl(new mapboxgl.NavigationControl());
+                   // Disable drag and zoom handlers.
+                   mat_pat_map.scrollZoom.disable();
+                   mat_pat_map.boxZoom.disable();
+                   mat_pat_map.dragRotate.disable();
+                   mat_pat_map.doubleClickZoom.disable();
+                   mat_pat_map.touchZoomRotate.disable();
+                   mat_pat_map.touchZoomRotate.disableRotation();
+            
+
+                var marker36 = new mapboxgl.Marker({color:'#556eec'})
+                    .setLngLat(forty_flyLocations[0]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker37 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(forty_flyLocations[1]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup2) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker38 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(forty_flyLocations[2]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup3) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker39 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(forty_flyLocations[3]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup4) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker40 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(forty_flyLocations[4]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup5) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker41 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(forty_flyLocations[5]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup6) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker42 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(forty_flyLocations[6]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup7) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+
+                var marker43 = new mapboxgl.Marker({color:'#556eec'})
+                    .setLngLat(thirty_flyLocations[0]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup8) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+        
+                var marker44 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(thirty_flyLocations[1]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup9) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker45 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(thirty_flyLocations[2]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup10) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker46 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(thirty_flyLocations[3]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup11) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker47 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(thirty_flyLocations[4]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup12) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker48 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(thirty_flyLocations[5]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup13) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker49 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(thirty_flyLocations[6]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup14) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker50 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(twenty_flyLocations[0]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup15) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker51 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(twenty_flyLocations[1]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup16) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker52 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(twenty_flyLocations[2]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup17) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker53 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(twenty_flyLocations[3]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup18) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker54 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(twenty_flyLocations[4]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup19) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker55 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(twenty_flyLocations[5]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup20) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker56 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(twenty_flyLocations[6]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup21) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker57 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(twenty_flyLocations[7]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup22) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker58 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(ten_flyLocations[0]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup23) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker59 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(ten_flyLocations[1]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup24) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker60 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(ten_flyLocations[2]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup25) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+        
+                var marker61 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(ten_flyLocations[3]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup26) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker62 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(ten_flyLocations[4]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup27) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker63 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(ten_flyLocations[5]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup28) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker64 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(hundred_flyLocations[0]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup29) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+        
+                var marker65 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(hundred_flyLocations[1]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup30) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+                
+                var marker66 = new mapboxgl.Marker({color:'#104d9e'})
+                    .setLngLat(hundred_flyLocations[2]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup31) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker67 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(hundred_flyLocations[3]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup32) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker68 = new mapboxgl.Marker({color:'#9d1042'})
+                    .setLngLat(hundred_flyLocations[4]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup33) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker69 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(hundred_flyLocations[5]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup34) //add the popup to the marker 
+                    .addTo(mat_pat_map);
+            
+                var marker70 = new mapboxgl.Marker({color:'#ec558a'})
+                    .setLngLat(hundred_flyLocations[6]) // put the marker at the first starting position in the flyLocations array [lng, lat]
+                    .setPopup(popup35) //add the popup to the marker 
+                    .addTo(mat_pat_map)
+            
+        </script>
+     
+     </body>
+ </html>
